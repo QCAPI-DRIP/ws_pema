@@ -85,11 +85,20 @@ for inputfile in clamdata.input:
   ext = os.path.splitext(inputfilepath)[1]
   name = os.path.splitext(inputfilepath)[0]
   clam.common.status.write(statusfile, "ext: "+ext);
-  dest = '/mnt/analysis/mydata/'+name+ext
+  
+  basename = os.path.basename(name+ext)
+  dest = '/mnt/analysis/'+basename
   if os.path.exists(dest):
       clam.common.status.write(statusfile, "Deleting: "+dest)
       os.remove(dest)
-        
+      
+  dest = '/mnt/analysis/mydata/'+basename
+  if os.path.exists(dest):
+      clam.common.status.write(statusfile, "Deleting: "+dest)
+      os.remove(dest)
+      
+      
+      
   if (ext == '.gz'):
       newPath = shutil.move(inputfilepath, "/mnt/analysis/mydata/");
       clam.common.status.write(statusfile, "Moved: "+inputfilepath);
