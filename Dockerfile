@@ -16,7 +16,6 @@ RUN mkdir -p /mnt/analysis/mydata
 WORKDIR /home
 COPY pema /home/pema
 WORKDIR /home/pema
-# RUN virtualenv --python=python3 clamenv 
 
 EXPOSE 8080
-# ENTRYPOINT pip3 install clam && python3 setup.py install && ./startserver_development.sh
+# ENTRYPOINT python3 setup.py install && ./startserver_development.sh

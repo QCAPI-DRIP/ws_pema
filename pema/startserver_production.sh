@@ -1,6 +1,6 @@
 #!/bin/bash
 if [ ! -z "$VIRTUAL_ENV" ]; then
-    python setup.py install
+    python3 setup.py install
 else
     echo "No virtual environment detected, you have to take care of running setup.py install or setup.py develop yourself!">&2
 fi

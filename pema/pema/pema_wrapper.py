@@ -89,14 +89,11 @@ for inputfile in clamdata.input:
       newPath = shutil.move(inputfilepath, "/mnt/analysis/");
       clam.common.status.write(statusfile, "Moved: "+inputfilepath); 
 
-cwd = os.getcwd()
-newPath = shutil.move('/home/', "/mnt/analysis/mydata");
 
 
-
-
-clam.common.status.write(statusfile, "Calling: "+"PEMA_v1.bds");
-result = os.system("/home/tools/BDS/.bds/bds PEMA_v1.bds");
+cmd = "/home/tools/BDS/.bds/bds /home/PEMA_v1.bds"
+clam.common.status.write(statusfile, "Calling: "+cmd);
+result = os.system(cmd);
 
 
 clam.common.status.write(statusfile, "Done",100) # status update
