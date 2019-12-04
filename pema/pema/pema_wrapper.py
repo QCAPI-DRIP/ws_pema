@@ -96,7 +96,7 @@ newPath = shutil.move('/home/', "/mnt/analysis/mydata");
 
 
 clam.common.status.write(statusfile, "Calling: "+"PEMA_v1.bds");
-result = os.system("PEMA_v1.bds");
+result = os.system("/home/tools/BDS/.bds/bds PEMA_v1.bds");
 
 
 clam.common.status.write(statusfile, "Done",100) # status update
