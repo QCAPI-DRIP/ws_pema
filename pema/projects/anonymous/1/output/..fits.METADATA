@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CLAMMetaData format="PlainTextFormat" mimetype="text/plain">
+  <meta id="encoding">utf-8</meta>
+  <provenance type="clam" id="pema" name="" url="http://localhost:8080" outputtemplate="out" outputtemplatelabel="Name of output" timestamp="1575396332.0345585">   <inputfile name="ERR1906857_1.fastq.gz">   <CLAMMetaData format="PlainTextFormat" mimetype="text/plain" inputtemplate="mydata">
+     <meta id="encoding">utf-8</meta>
+   </CLAMMetaData>
+   </inputfile>
+   <inputfile name="ERR1906857_2.fastq.gz">   <CLAMMetaData format="PlainTextFormat" mimetype="text/plain" inputtemplate="mydata">
+     <meta id="encoding">utf-8</meta>
+   </CLAMMetaData>
+   </inputfile>
+   <inputfile name="ERR1906862_1.fastq.gz">   <CLAMMetaData format="PlainTextFormat" mimetype="text/plain" inputtemplate="mydata">
+     <meta id="encoding">utf-8</meta>
+   </CLAMMetaData>
+   </inputfile>
+   <inputfile name="parameters.tsv">   <CLAMMetaData format="PlainTextFormat" mimetype="text/plain" inputtemplate="metadata">
+     <meta id="encoding">utf-8</meta>
+   </CLAMMetaData>
+   </inputfile>
+  </provenance></CLAMMetaData>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<?xml-stylesheet type="text/xsl" href="http://localhost:8080/static/interface.xsl"?>
+<clam xmlns:xlink="http://www.w3.org/1999/xlink" version="3.0.7" id="pema" name="" project="1" user="anonymous" baseurl="http://localhost:8080" accesstoken="749e78100ca71388a07506b468b7da7c"  interfaceoptions="" oauth_access_token="" authentication="none">
+    <description>PEMA supports the metabarcoding analysis of four marker genes, 16S rRNA (Bacteria), ITS (Fungi) as well as COI and 18S rRNA (metazoa). As input, PEMA accepts .fastq.gz files as returned by Illumina sequencing platforms.</description>
+    <version></version>
+    <author></author>
+    <formats>
+            <format id="PlainTextFormat" name="Plain Text Format" mimetype="text/plain" />
+    </formats>
+    <profiles>
+            
+        <profile>
+         <input>
+            <InputTemplate id="mydata" format="PlainTextFormat" label=".fastq.gz" mimetype="text/plain" extension="gz" optional="no" unique="no" acceptarchive="no">
+                <StaticParameter id="encoding" name="Encoding" description="The character encoding of the file" value="utf-8" />
+            </InputTemplate>
+            <InputTemplate id="metadata" format="PlainTextFormat" label=".tsv" mimetype="text/plain" extension="tsv" optional="no" unique="yes" acceptarchive="no">
+                <StaticParameter id="encoding" name="Encoding" description="The character encoding of the file" value="utf-8" />
+            </InputTemplate>
+         </input>
+         <output>
+            <OutputTemplate id="out" format="PlainTextFormat" label="Name of output" mimetype="text/plain" filename=".fits" parent="metadata" unique="yes">
+                <meta id="encoding">utf-8</meta>
+            </OutputTemplate>
+            <OutputTemplate id="errorlog" format="PlainTextFormat" label="Log file with (standard) error output" mimetype="text/plain" filename="error.log" parent="metadata" unique="yes">
+                <meta id="encoding">utf-8</meta>
+            </OutputTemplate>
+         </output>
+        </profile>
+
+    </profiles>
+    <parameters>
+        <parametergroup name="Group title">
+        </parametergroup>
+    </parameters>
+    <program matchedprofiles="0">
+        <outputfile name=".fits" template="out" xlink:type="simple" xlink:href="http://localhost:8080/1/output/.fits">
+                <inputfile name="parameters.tsv" template="metadata" xlink:type="simple" xlink:href="http://localhost:8080/1/input/parameters.tsv" />
+        </outputfile>
+        <outputfile name="error.log" template="errorlog" xlink:type="simple" xlink:href="http://localhost:8080/1/output/error.log">
+                <inputfile name="parameters.tsv" template="metadata" xlink:type="simple" xlink:href="http://localhost:8080/1/input/parameters.tsv" />
+        </outputfile>
+    </program>
+    <output>
+    </output>
+    <inputsources>
+    </inputsources>
+    <input>
+        <file xlink:type="simple" xlink:href="http://localhost:8080/1/input/parameters.tsv" template="metadata">
+            <name>parameters.tsv</name>
+        </file>
+        <file xlink:type="simple" xlink:href="http://localhost:8080/1/input/ERR1906862_1.fastq.gz" template="mydata">
+            <name>ERR1906862_1.fastq.gz</name>
+        </file>
+        <file xlink:type="simple" xlink:href="http://localhost:8080/1/input/ERR1906857_2.fastq.gz" template="mydata">
+            <name>ERR1906857_2.fastq.gz</name>
+        </file>
+        <file xlink:type="simple" xlink:href="http://localhost:8080/1/input/ERR1906857_1.fastq.gz" template="mydata">
+            <name>ERR1906857_1.fastq.gz</name>
+        </file>
+    </input>
+</clam>

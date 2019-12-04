@@ -1,0 +1,7 @@
+
+#This is a host-specific configuration file for the webservice on kif
+#Here you can add host-specific options. This file
+#always takes presence over configurations that are not host specific
+host: pema_clam
+root: /home/alogo/Downloads/pema
+port: 8080
