@@ -37,7 +37,9 @@ import os
 import shutil
 import glob
 import errno
-
+from shutil import copyfile       
+        
+        
 #When the wrapper is started, the current working directory corresponds to the project directory, input files are in input/ , output files should go in output/ .
 
 #make a shortcut to the shellsafe() function
@@ -77,13 +79,19 @@ imglist_path='';
 for inputfile in clamdata.input:
   inputtemplate = inputfile.metadata.inputtemplate
   inputfilepath = str(inputfile)
-  #encoding = inputfile.metadata['encoding'] #Example showing how to obtain metadata parameters
-  #clam.common.status.write(statusfile, "inputfilepath: "+inputfilepath)
+  #encoding = inputfile.mebdstadata['encoding'] #Example showing how to obtain metadata parameters
+  clam.common.status.write(statusfile, "inputfilepath: "+inputfilepath)
   #clam.common.status.write(statusfile, "encoding: "+encoding)
   ext = os.path.splitext(inputfilepath)[1]
+  name = os.path.splitext(inputfilepath)[0]
   clam.common.status.write(statusfile, "ext: "+ext);
+  dest = '/mnt/analysis/mydata/'+name+ext
+  if os.path.exists(dest):
+      clam.common.status.write(statusfile, "Deleting: "+dest)
+      os.remove(dest)
+        
   if (ext == '.gz'):
-      newPath = shutil.move(inputfilepath, "/mnt/analysis/mydata");
+      newPath = shutil.move(inputfilepath, "/mnt/analysis/mydata/");
       clam.common.status.write(statusfile, "Moved: "+inputfilepath);
   if (ext == '.tsv'):
       newPath = shutil.move(inputfilepath, "/mnt/analysis/");
@@ -95,7 +103,13 @@ cmd = "/home/tools/BDS/.bds/bds /home/PEMA_v1.bds"
 clam.common.status.write(statusfile, "Calling: "+cmd);
 result = os.system(cmd);
 
-
+shutil.copytree('/mnt/analysis/16S_final_test', outputdir+'/16S_final_test')
 clam.common.status.write(statusfile, "Done",100) # status update
 
+
+
 sys.exit(result) #non-zero exit codes indicate an error and will be picked up by CLAM as such!
+        
+        
+        
+        
