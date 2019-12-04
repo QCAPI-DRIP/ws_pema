@@ -18,5 +18,5 @@ COPY pema /home/pema
 WORKDIR /home/pema
 
 EXPOSE 8080
-# ENTRYPOINT python3 setup.py install && ./startserver_development.sh
+ENTRYPOINT python3 setup.py install && ./startserver_development.sh
 # CMD python3 setup.py install && ./startserver_development.sh
