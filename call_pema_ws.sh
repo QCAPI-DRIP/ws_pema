@@ -1,4 +1,4 @@
-#!/bin/bash
+!#/bin/bash
 
 # ./call_pema_ws.sh --ws-url=http://host  --project-name=1 --parameters-file=/home/alogo/Downloads/Example_VRE/good_data3/parameters.tsv  --fastq-dir=/home/alogo/Downloads/Example_VRE/good_data3/mydata/
 
@@ -6,7 +6,8 @@ print_help () {
 echo "--ws_url:             The web service url. e.g. --ws_url http://host:8080/"
 echo "--project_name:       The name to create a project in the web service --project_name analysis01"
 echo "--parameters_file:    The parameters_file --parameters_file parameters.tsv"
-echo "--fastq_dir:          The folder where the fastq data are located. Warning !!! This folder must contain ONLY  .fastq.gz files"
+# echo "--fastq_dir:          The folder where the fastq data are located. Warning !!! This folder must contain ONLY  .fastq.gz files"
+echo "--fastq_zip:          The zip file with fastq data are located."
 }
 
 
@@ -24,15 +25,22 @@ case $i in
     PARAMETERS_FILE=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
     ;;
 
-    --fastq-dir=*)
-    FASTQ_DIR=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+#     --fastq-dir=*)
+#     FASTQ_DIR=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
+#     ;;
+#     *)
+    --fastq-zip=*)
+    FASTQ_ZIP=`echo $i | sed 's/[-a-zA-Z0-9]*=//'`
     ;;
-    *)
+    *)    
 #            print_help # unknown option
     ;;
 esac
 done
 
+FASTQ_DIR=/tmp/fastq-dir
+mkdir -p $FASTQ_DIR
+unzip $FASTQ_ZIP -d $FASTQ_DIR
 
 STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -X PUT $WS_URL/$PROJECT_NAME)
 
