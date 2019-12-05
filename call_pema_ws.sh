@@ -1,4 +1,5 @@
-!#/bin/bash
+#!/bin/bash
+
 
 # ./call_pema_ws.sh --ws-url=http://host  --project-name=1 --parameters-file=/home/alogo/Downloads/Example_VRE/good_data3/parameters.tsv  --fastq-dir=/home/alogo/Downloads/Example_VRE/good_data3/mydata/
 
@@ -38,9 +39,14 @@ case $i in
 esac
 done
 
-FASTQ_DIR=/tmp/pema_input
+FASTQ_DIR=/tmp/pema_input/$PROJECT_NAME
+rm -r $FASTQ_DIR
 mkdir -p $FASTQ_DIR
-unzip $FASTQ_ZIP -d $FASTQ_DIR
+
+unzip $FASTQ_ZIP -d $FASTQ_DIR 
+
+filename=$(basename $FASTQ_ZIP)
+FASTQ_DIR=$FASTQ_DIR"/"${filename%.*}
 
 STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -X PUT $WS_URL/$PROJECT_NAME)
 
@@ -59,7 +65,8 @@ echo "STATUS_CODE=$STATUS_CODE"
 if [ $STATUS_CODE -eq 200 ]; then
     echo "Uploaded $PARAMETERS_FILE "
 else
-    echo "Got $STATUS :( Something is wrong..."
+    echo "Got $STATUS :( Failed to upload $PARAMETERS_FILE"
+    exit -1
 fi
 
 
@@ -74,6 +81,7 @@ for file in $FASTQ_DIR/*; do
             echo "Uploaded $file"
         else
             echo "Got $STATUS :( Something is wrong..."
+            exit -1
         fi
     fi 
 done
@@ -83,6 +91,7 @@ if [ $STATUS_CODE -eq 202 ]; then
     echo "Execution started"
 else
     echo "Got $STATUS :( Something is wrong..."
+    exit -1
 fi
 
 output_message=`curl -X GET $WS_URL/$PROJECT_NAME/`
