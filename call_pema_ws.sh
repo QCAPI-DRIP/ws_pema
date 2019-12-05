@@ -38,7 +38,7 @@ case $i in
 esac
 done
 
-FASTQ_DIR=/tmp/fastq-dir
+FASTQ_DIR=/tmp/pema_input
 mkdir -p $FASTQ_DIR
 unzip $FASTQ_ZIP -d $FASTQ_DIR
 
@@ -102,27 +102,9 @@ done
 echo $output_message
 echo "Execution done"
 curl -v $WS_URL/$PROJECT_NAME/output/gz/ -o $PROJECT_NAME.tar.gz
-tar -xvzf $PROJECT_NAME.tar.gz
+# tar -xvzf $PROJECT_NAME.tar.gz
+mkdir -p /tmp/pema_output/$PROJECT_NAME
+tar -xvzf $PROJECT_NAME.tar.gz -C /tmp/pema_output/$PROJECT_NAME
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+echo /tmp/pema_output/$PROJECT_NAME/16S_final_test
 exit 0
