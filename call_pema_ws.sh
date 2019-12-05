@@ -32,50 +32,50 @@ case $i in
     ;;
 esac
 done
-# 
-# 
-# STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -X PUT $WS_URL/$PROJECT_NAME)
-# 
-# if [ $STATUS_CODE -eq 201 ]; then
-#     echo "Project created"
-# else
-#     echo "Got $STATUS :( Something is wrong..."
-# fi
-#   
-#   
-#   
-# inputtemplate=metadata
-# STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -F "inputtemplate=$inputtemplate" -F "file=@$PARAMETERS_FILE" $WS_URL/$PROJECT_NAME/input/parameters.tsv)
-# echo "STATUS_CODE=$STATUS_CODE"
-# 
-# if [ $STATUS_CODE -eq 200 ]; then
-#     echo "Uploaded $PARAMETERS_FILE "
-# else
-#     echo "Got $STATUS :( Something is wrong..."
-# fi
-# 
-# 
-# for file in $FASTQ_DIR/*; do 
-#     if [ -f "$file" ]; then
-#         filename=$(basename $file)
-#         inputtemplate=mydata
-#         STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -F "inputtemplate=$inputtemplate" -F "file=@$file" $WS_URL/$PROJECT_NAME/input/$filename)
-#         
-#         echo "STATUS_CODE=$STATUS_CODE"
-#         if [ $STATUS_CODE -eq 200 ]; then
-#             echo "Uploaded $file"
-#         else
-#             echo "Got $STATUS :( Something is wrong..."
-#         fi
-#     fi 
-# done
-# 
-# STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -X POST $WS_URL/$PROJECT_NAME/)
-# if [ $STATUS_CODE -eq 202 ]; then
-#     echo "Execution started"
-# else
-#     echo "Got $STATUS :( Something is wrong..."
-# fi
+
+
+STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -X PUT $WS_URL/$PROJECT_NAME)
+
+if [ $STATUS_CODE -eq 201 ]; then
+    echo "Project created"
+else
+    echo "Got $STATUS :( Something is wrong..."
+fi
+  
+  
+  
+inputtemplate=metadata
+STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -F "inputtemplate=$inputtemplate" -F "file=@$PARAMETERS_FILE" $WS_URL/$PROJECT_NAME/input/parameters.tsv)
+echo "STATUS_CODE=$STATUS_CODE"
+
+if [ $STATUS_CODE -eq 200 ]; then
+    echo "Uploaded $PARAMETERS_FILE "
+else
+    echo "Got $STATUS :( Something is wrong..."
+fi
+
+
+for file in $FASTQ_DIR/*; do 
+    if [ -f "$file" ]; then
+        filename=$(basename $file)
+        inputtemplate=mydata
+        STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -F "inputtemplate=$inputtemplate" -F "file=@$file" $WS_URL/$PROJECT_NAME/input/$filename)
+        
+        echo "STATUS_CODE=$STATUS_CODE"
+        if [ $STATUS_CODE -eq 200 ]; then
+            echo "Uploaded $file"
+        else
+            echo "Got $STATUS :( Something is wrong..."
+        fi
+    fi 
+done
+
+STATUS_CODE=$(curl -s -o /dev/null -w '%{http_code}' -X POST $WS_URL/$PROJECT_NAME/)
+if [ $STATUS_CODE -eq 202 ]; then
+    echo "Execution started"
+else
+    echo "Got $STATUS :( Something is wrong..."
+fi
 
 output_message=`curl -X GET $WS_URL/$PROJECT_NAME/`
 DONE=false
