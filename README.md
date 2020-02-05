@@ -56,8 +56,22 @@ Will respond with HTTP 200 OK if successful, and returns the CLAM XML for the pr
 curl -v http://$host/$yourprojectname/output/$outputfilename
 ```
 
+## Pull Docker
+The docer image is located in : https://hub.docker.com/repository/docker/alogo53/ws-pema-lifewatch
+To pull the image type:
+```
+docker pull alogo53/ws-pema-lifewatch
+```
 
-
+## Start Docker
+Due to a bug you need to start the docker conatiner in interactive mode. To do that first start a new sceen session:
+```
+screen
+```
+Then start the docker container: 
+```
+sudo docker run -p 8080:8080 -it ws-pema-lifewatch
+```
 
 
 
