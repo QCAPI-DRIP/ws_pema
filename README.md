@@ -64,11 +64,7 @@ docker pull alogo53/ws-pema-lifewatch
 ```
 
 ## Start Docker
-Due to a bug you need to start the docker conatiner in interactive mode. To do that first start a new sceen session:
-```
-screen
-```
-Then start the docker container: 
+Start the docker container: 
 ```
 sudo docker run -p 8080:8080 -it ws-pema-lifewatch
 ```
