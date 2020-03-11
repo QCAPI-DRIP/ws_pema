@@ -6,9 +6,9 @@ MAINTAINER S. Koulouzis
 RUN apt-get update --fix-missing && apt-get -y upgrade && apt-get install -y git python3 python3-pip && pip3 install --upgrade pip && pip3 install clam requests
 # RUN mkdir -p /mnt/analysis/mydata
 
-# WORKDIR /home
-# COPY pema /home/pema
-# WORKDIR /home/pema
+WORKDIR /home
+COPY pema /home/pema
+WORKDIR /home/pema
 ENV PATH="/home/tools/BDS/.bds:${PATH}"
 
 EXPOSE 8080
