@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-# ./call_pema_ws.sh --ws-url=http://host  --project-name=1 --parameters-file=/home/alogo/Downloads/Example_VRE/good_data3/parameters.tsv  --fastq-dir=/home/alogo/Downloads/Example_VRE/good_data3/mydata/
+# ./call_pema_ws.sh --ws-url=http://host  --project-name=1 --parameters-file=/home/alogo/Downloads/Example_VRE/good_data3/parameters.tsv  --fastq_zip=/home/alogo/Downloads/Example_VRE/good_data3/mydata.zip
 
 print_help () {
 echo "--ws_url:             The web service url. e.g. --ws_url http://host:8080/"
