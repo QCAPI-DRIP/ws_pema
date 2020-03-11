@@ -9,9 +9,6 @@ RUN apt-get update --fix-missing && apt-get -y upgrade && apt-get install -y git
 # WORKDIR /home
 # COPY pema /home/pema
 # WORKDIR /home/pema
-
-export PATH=$PATH:
-
 ENV PATH="/home/tools/BDS/.bds:${PATH}"
 
 # EXPOSE 8080
