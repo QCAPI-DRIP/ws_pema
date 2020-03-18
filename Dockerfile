@@ -1,4 +1,4 @@
-FROM hariszaf/pema:v2
+FROM hariszaf/pema:latest
 
 
 MAINTAINER S. Koulouzis
