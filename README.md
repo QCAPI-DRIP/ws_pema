@@ -69,6 +69,4 @@ Start the docker container:
 sudo docker run -p 8080:8080 -it ws-pema-lifewatch
 ```
 
-## Sample Data
-https://surfdrive.surf.nl/files/index.php/s/E6kY0h3C4Tan4vA
 
