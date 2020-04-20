@@ -1,3 +1,8 @@
 #!/bin/bash
 
-# ./call_pema_ws.sh --ws-url=http://host  --project-name=1 --parameters-file=parameters.tsv  --fastq_zip=mydata.zip
+yourprojectname=cur_example
+host=localhost:8080
+
+curl -v -X PUT http://$host/$yourprojectname
+
+filename=test_dataset/parameters.tsv
